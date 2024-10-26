@@ -1,34 +1,55 @@
-<!-- index.html -->
+<!-- index.html (same as before but with added meta description) -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quoteopedia - Your ultimate destination for inspiration, wisdom, and quotes for every mood">
     <title>Quoteopedia - The World of Quotes</title>
     <link rel="stylesheet" href="b.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Quoteopedia</h1>
-        <p class="subtitle">The World of Quotes</p>
-    </header>
+    <div class="floating-quotes"></div>
+    
+    <main class="container">
+        <header class="hero">
+            <h1 class="main-title">Quoteopedia</h1>
+            <p class="tagline">Find wisdom for every moment</p>
+            <p class="description">Discover quotes that resonate with your soul, lift your spirits, and guide your path</p>
+        </header>
 
-    <div class="mood-selector">
-        <h2>How are you feeling today?</h2>
-        <div class="mood-buttons">
-            <button onclick="filterByMood('happy')">😊 Happy</button>
-            <button onclick="filterByMood('sad')">😢 Sad</button>
-            <button onclick="filterByMood('inspired')">✨ Inspired</button>
-            <button onclick="filterByMood('thoughtful')">🤔 Thoughtful</button>
-        </div>
-    </div>
+        <section class="mood-section">
+            <h2>How are you feeling today?</h2>
+            <div class="mood-buttons">
+                <button class="mood-btn happy" onclick="filterByMood('happy')">
+                    <span class="emoji">😊</span>
+                    <span class="text">Happy</span>
+                </button>
+                <button class="mood-btn sad" onclick="filterByMood('sad')">
+                    <span class="emoji">😢</span>
+                    <span class="text">Sad</span>
+                </button>
+                <button class="mood-btn inspired" onclick="filterByMood('inspired')">
+                    <span class="emoji">✨</span>
+                    <span class="text">Inspired</span>
+                </button>
+                <button class="mood-btn thoughtful" onclick="filterByMood('thoughtful')">
+                    <span class="emoji">🤔</span>
+                    <span class="text">Thoughtful</span>
+                </button>
+            </div>
+        </section>
 
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search quotes...">
-        <div id="tagCloud" class="tag-cloud"></div>
-    </div>
+        <section class="search-section">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Search for wisdom...">
+                <div id="tagCloud" class="tag-cloud"></div>
+            </div>
+        </section>
 
-    <div id="quoteContainer" class="quote-container"></div>
+        <section id="quoteContainer" class="quote-container"></section>
+    </main>
 
     <script src="scripts.js"></script>
 </body>
