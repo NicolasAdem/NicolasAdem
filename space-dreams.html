@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Dreams | John Doe</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+            perspective: 1000px;
+        }
+
+        .space-container {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle var(--duration, 2s) infinite var(--delay, 0s);
+        }
+
+        .rocket {
+            position: absolute;
+            width: 60px;
+            height: 120px;
+            background: linear-gradient(45deg, #ff3366, #ff6b6b);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            transform-origin: center;
+        }
+
+        .rocket::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 40px;
+            background: linear-gradient(0deg, transparent, #ff9966, #ffcc66);
+            animation: flame 0.5s infinite;
+        }
+
+        @keyframes flame {
+            0%, 100% { height: 30px; opacity: 0.8; }
+            50% { height: 40px; opacity: 1; }
+        }
+
+        .planet {
+            position: absolute;
+            border-radius: 50%;
+            background: var(--planet-color);
+            box-shadow: inset -20px -20px 50px rgba(0,0,0,0.5),
+                       0 0 50px var(--glow-color);
+        }
+
+        .dream-text {
+            position: absolute;
+            font-size: 2.5rem;
+            color: #fff;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+
+        .space-heading {
+            position: relative;
+            text-align: center;
+            padding-top: 2rem;
+            font-size: 4rem;
+            background: linear-gradient(45deg, #ff3366, #ffcc66);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+        }
+
+        .nebula {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center,
+                rgba(255, 0, 150, 0.1) 0%,
+                rgba(0, 150, 255, 0.1) 50%,
+                transparent 70%);
+            filter: blur(40px);
+            animation: nebula-shift 20s infinite alternate;
+        }
+
+        @keyframes nebula-shift {
+            0% { transform: scale(1); opacity: 0.5; }
+            100% { transform: scale(1.5); opacity: 0.8; }
+        }
+
+        .shooting-star {
+            position: absolute;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(90deg, #fff, transparent);
+            animation: shoot 2s linear infinite;
+        }
+
+        @keyframes shoot {
+            0% { transform: translateX(-100%) translateY(0); opacity: 1; }
+            100% { transform: translateX(200%) translateY(100px); opacity: 0; }
+        }
+
+        .navigation {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            z-index: 100;
+        }
+
+        .nav-button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 1rem;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="navigation">
+        <a href="index.html" class="nav-button">Home</a>
+        <a href="#" class="nav-button">Space Dreams</a>
+    </div>
+
+    <div class="space-container">
+        <h1 class="space-heading">Space Dreams</h1>
+        <div class="nebula"></div>
+        <div class="stars"></div>
+        <div class="dream-text" style="top: 30%; left: 10%">Colonize Mars</div>
+        <div class="dream-text" style="top: 45%; right: 15%">Space Tourism</div>
+        <div class="dream-text" style="top: 60%; left: 20%">Asteroid Mining</div>
+        <div class="dream-text" style="bottom: 25%; right: 20%">Interstellar Travel</div>
+    </div>
+
+    <script>
+        // Create stars
+        const starsContainer = document.querySelector('.stars');
+        for (let i = 0; i < 200; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+            star.style.setProperty('--delay', Math.random() * 2 + 's');
+            starsContainer.appendChild(star);
+        }
+
+        // Create shooting stars
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            star.style.top = Math.random() * 50 + '%';
+            star.style.transform = `rotate(${Math.random() * 20 + 20}deg)`;
+            document.querySelector('.space-container').appendChild(star);
+
+            star.addEventListener('animationend', () => star.remove());
+        }
+
+        setInterval(createShootingStar, 4000);
+
+        // Create planets
+        function createPlanet(size, color, glowColor, left, top) {
+            const planet = document.createElement('div');
+            planet.className = 'planet';
+            planet.style.width = size + 'px';
+            planet.style.height = size + 'px';
+            planet.style.left = left + '%';
+            planet.style.top = top + '%';
+            planet.style.setProperty('--planet-color', color);
+            planet.style.setProperty('--glow-color', glowColor);
+            document.querySelector('.space-container').appendChild(planet);
+            
+            gsap.to(planet, {
+                rotation: 360,
+                duration: 100,
+                repeat: -1,
+                ease: "none"
+            });
+        }
+
+        // Create various planets
+        createPlanet(100, '#ff6b6b', '#ff33664d', 80, 20);
+        createPlanet(60, '#4facfe', '#4facfe4d', 15, 70);
+        createPlanet(40, '#ffcc66', '#ffcc664d', 70, 60);
+
+        // Animate dream texts
+        gsap.utils.toArray('.dream-text').forEach((text, i) => {
+            gsap.to(text, {
+                opacity: 1,
+                y: 0,
+                duration: 1.5,
+                delay: i * 0.5,
+                scrollTrigger: {
+                    trigger: text,
+                    start: 'top center+=100',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        // Animate space heading
+        gsap.to('.space-heading', {
+            opacity: 1,
+            duration: 2,
+            y: 20,
+            ease: 'power4.out'
+        });
+
+        // Create floating rocket
+        const rocket = document.createElement('div');
+        rocket.className = 'rocket';
+        document.querySelector('.space-container').appendChild(rocket);
+
+        // Animate rocket in a figure-8 pattern
+        gsap.to(rocket, {
+            duration: 20,
+            motionPath: {
+                path: [
+                    {x: 0, y: 0},
+                    {x: 400, y: 150},
+                    {x: 800, y: 0},
+                    {x: 400, y: -150},
+                    {x: 0, y: 0}
+                ],
+                curviness: 1.5
+            },
+            rotation: 360,
+            repeat: -1,
+            ease: "none"
+        });
+    </script>
+</body>
+</html>
