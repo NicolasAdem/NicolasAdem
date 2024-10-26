@@ -3,444 +3,129 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicolas Adem | Creative Innovator</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-
-        :root {
-            --warm-bg: #FFF8F3;
-            --warm-accent: #FF6B4A;
-            --text-primary: #2C2C2C;
-            --text-secondary: #666;
-            --card-bg: #FFFFFF;
-        }
-
-        body {
-            background-color: var(--warm-bg);
-            color: var(--text-primary);
-            line-height: 1.6;
-        }
-
-        .nav {
-            position: fixed;
-            width: 100%;
-            padding: 1.5rem;
-            background: rgba(255, 248, 243, 0.8);
-            backdrop-filter: blur(10px);
-            z-index: 100;
-        }
-
-        .nav-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--warm-accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        section {
-            padding: 6rem 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            padding: 2rem;
-        }
-
-        .hero-content {
-            max-width: 1200px;
-            text-align: center;
-            z-index: 1;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto;
-            opacity: 0;
-            transform: translateY(30px);
-        }
-
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            padding: 2rem 0;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 1rem;
-            overflow: hidden;
-            background: var(--card-bg);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: translateY(-10px);
-        }
-
-        .gallery-img {
-            width: 100%;
-            height: 300px;
-            background: #ddd;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .gallery-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .gallery-content {
-            padding: 1.5rem;
-        }
-
-        .gallery-content h3 {
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-
-        .innovations {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .innovation-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .innovation-card {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .innovation-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            text-align: center;
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
-        }
-
-        .extras {
-            background: linear-gradient(45deg, #FF6B4A11, #FFB34711);
-            position: relative;
-        }
-
-        .extras-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .extra-item {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 2rem;
-            border-radius: 1rem;
-            text-align: center;
-        }
-
-        .contact {
-            text-align: center;
-            padding-bottom: 8rem;
-        }
-
-        .contact-methods {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .contact-method {
-            padding: 1rem 2rem;
-            background: var(--card-bg);
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .contact-method:hover {
-            transform: translateY(-5px);
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            
-            .hero p {
-                font-size: 1.2rem;
-            }
-
-            .nav-links {
-                display: none;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-methods {
-                flex-direction: column;
-            }
-        }
-    </style>
+    <title>Nicolas Adem - Building Tomorrow's Technology</title>
+    <link rel="stylesheet" href="b.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="nav">
-        <div class="nav-content">
-            <div class="logo">NA</div>
-            <div class="nav-links">
-                <a href="#gallery">Gallery</a>
-                <a href="#innovations">Innovations</a>
-                <a href="#extras">Extras</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Nicolas Adem</h1>
-            <p>Innovator • Creator • Visionary</p>
-        </div>
-    </section>
-
-    <section id="gallery" class="gallery-section">
+    <div class="scroll-progress"></div>
+    
+    <section id="hero" class="section">
         <div class="container">
-            <h2 class="section-title">Creative Portfolio</h2>
-            <p class="section-subtitle">A collection of my works, projects, and creative endeavors</p>
-            <div class="gallery">
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img src="/api/placeholder/400/300" alt="Project 1">
-                    </div>
-                    <div class="gallery-content">
-                        <h3>Project Title</h3>
-                        <p>Description of the innovative project and its impact on the field.</p>
-                    </div>
+            <div class="hero-content">
+                <div class="profile-image">
+                    <!-- Replace with your image -->
+                    <img src="profile.jpg" alt="Nicolas Adem">
                 </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img src="/api/placeholder/400/300" alt="Project 2">
-                    </div>
-                    <div class="gallery-content">
-                        <h3>Creative Work</h3>
-                        <p>Exploring new boundaries through creative expression and technology.</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-img">
-                        <img src="/api/placeholder/400/300" alt="Project 3">
-                    </div>
-                    <div class="gallery-content">
-                        <h3>Innovation</h3>
-                        <p>Breaking new ground with innovative solutions and approaches.</p>
-                    </div>
+                <h1>Building Tomorrow's Technology for a Sustainable World</h1>
+                <p class="subheadline">Ambitious young tech entrepreneur, dreamer, and change-maker</p>
+                <div class="cta-buttons">
+                    <button onclick="scrollToSection('about')" class="btn">Explore My Journey</button>
+                    <button onclick="scrollToSection('connect')" class="btn">Let's Connect</button>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="innovations" class="innovations">
+    <section id="about" class="section">
         <div class="container">
-            <h2 class="section-title">Innovative Projects</h2>
-            <p class="section-subtitle">Pushing boundaries and creating new possibilities</p>
-            <div class="innovation-cards">
-                <div class="innovation-card">
-                    <h3>Project Alpha</h3>
-                    <p>Revolutionizing the way we think about digital interaction through innovative approaches.</p>
+            <h2>My Story</h2>
+            <div class="about-grid">
+                <div class="personal-story">
+                    <div class="content-box">
+                        <h3>The Journey</h3>
+                        <p>From a curious young student to an ambitious entrepreneur, my path has been driven by a passion for technology, AI, and making a difference in the world.</p>
+                    </div>
                 </div>
-                <div class="innovation-card">
-                    <h3>Project Beta</h3>
-                    <p>Creating seamless experiences that bridge the gap between technology and human needs.</p>
-                </div>
-                <div class="innovation-card">
-                    <h3>Project Gamma</h3>
-                    <p>Exploring new frontiers in interactive design and user experience.</p>
+                <div class="milestones">
+                    <div class="timeline">
+                        <div class="milestone">
+                            <div class="milestone-content">
+                                <h4>Founded Web-G</h4>
+                                <p>Created innovative web solutions</p>
+                            </div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-content">
+                                <h4>Poetry Competition</h4>
+                                <p>Award-winning creative expressions</p>
+                            </div>
+                        </div>
+                        <div class="milestone">
+                            <div class="milestone-content">
+                                <h4>Global Exchange</h4>
+                                <p>Experiences in Portugal and South Africa</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="extras" class="extras">
+    <section id="vision" class="section">
         <div class="container">
-            <h2 class="section-title">Extra Dimensions</h2>
-            <p class="section-subtitle">Beyond the ordinary - where creativity meets innovation</p>
-            <div class="extras-grid">
-                <div class="extra-item">
-                    <h3>Research</h3>
-                    <p>Diving deep into emerging technologies and their applications.</p>
+            <h2>Changing the World</h2>
+            <div class="vision-grid">
+                <div class="vision-card">
+                    <h3>Technology & Innovation</h3>
+                    <p>Embracing AI, robotics, and environmental technologies</p>
                 </div>
-                <div class="extra-item">
-                    <h3>Experiments</h3>
-                    <p>Testing new ideas and pushing the boundaries of what's possible.</p>
+                <div class="vision-card">
+                    <h3>Entrepreneurship</h3>
+                    <p>Leading sustainable businesses that make a difference</p>
                 </div>
-                <div class="extra-item">
-                    <h3>Collaborations</h3>
-                    <p>Working with other innovators to create something extraordinary.</p>
+                <div class="vision-card">
+                    <h3>Sustainability</h3>
+                    <p>Developing eco-friendly solutions</p>
+                </div>
+                <div class="vision-card">
+                    <h3>Global Impact</h3>
+                    <p>Creating opportunities worldwide</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact">
+    <section id="projects" class="section">
         <div class="container">
-            <h2 class="section-title">Let's Connect</h2>
-            <p class="section-subtitle">Ready to collaborate on the next big thing?</p>
-            <div class="contact-methods">
-                <div class="contact-method">
-                    <h3>Email</h3>
-                    <p>your@email.com</p>
+            <h2>Passion in Action</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Web-G</h3>
+                    <p>Innovative web solutions for tomorrow's challenges</p>
                 </div>
-                <div class="contact-method">
-                    <h3>Social</h3>
-                    <p>@yourusername</p>
-                </div>
-                <div class="contact-method">
-                    <h3>Location</h3>
-                    <p>Your City, Country</p>
-                </div>
+                <!-- Add more project cards as needed -->
             </div>
         </div>
     </section>
 
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
+    <section id="connect" class="section">
+        <div class="container">
+            <h2>Let's Build Together</h2>
+            <form class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
 
-        // Hero animations
-        gsap.to('.hero h1', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            delay: 0.5
-        });
+    <footer>
+        <div class="container">
+            <p>"The future belongs to those who believe in the beauty of their dreams."</p>
+        </div>
+    </footer>
 
-        gsap.to('.hero p', {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            delay: 0.8
-        });
-
-        // Scroll animations for gallery items
-        gsap.utils.toArray('.gallery-item').forEach(item => {
-            gsap.from(item, {
-                opacity: 0,
-                y: 50,
-                duration: 1,
-                scrollTrigger: {
-                    trigger: item,
-                    start: "top bottom-=100",
-                    toggleActions: "play none none reverse"
-                }
-            });
-        });
-
-        // Scroll animations for innovation cards
-        gsap.utils.toArray('.innovation-card').forEach(card => {
-            gsap.from(card, {
-                opacity: 0,
-                y: 30,
-                duration: 0.8,
-                scrollTrigger: {
-                    trigger: card,
-                    start: "top bottom-=50",
-                    toggleActions: "play none none reverse"
-                }
-            });
-        });
-
-        // Scroll animations for extra items
-        gsap.utils.toArray('.extra-item').forEach(item => {
-            gsap.from(item, {
-                opacity: 0,
-                scale: 0.9,
-                duration: 0.8,
-                scrollTrigger: {
-                    trigger: item,
-                    start: "top bottom-=50",
-                    toggleActions: "play none none reverse"
-                }
-            });
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
