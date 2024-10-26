@@ -3,262 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicolas Adem - Shaping the Future</title>
-    
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- ScrollReveal -->
-    <script src="https://unpkg.com/scrollreveal"></script>
-    
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="b.css">
+    <title>Nicolas Adem | Personal Space</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+
+        :root {
+            --warm-bg: #FFF8F3;
+            --warm-accent: #FF6B4A;
+            --text-primary: #2C2C2C;
+            --text-secondary: #666;
+        }
+
+        body {
+            background-color: var(--warm-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .nav {
+            position: fixed;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(255, 248, 243, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--warm-accent);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            text-align: center;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .floating-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            filter: blur(40px);
+        }
+
+        .shape-1 {
+            background: var(--warm-accent);
+            width: 300px;
+            height: 300px;
+            top: 20%;
+            left: 15%;
+        }
+
+        .shape-2 {
+            background: #FFB347;
+            width: 400px;
+            height: 400px;
+            bottom: 10%;
+            right: 15%;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
+        .scroll-indicator::before {
+            content: '';
+            display: block;
+            width: 2px;
+            height: 60px;
+            background: var(--text-primary);
+            margin: 0 auto;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(20px); opacity: 0; }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
 </head>
 <body>
-    <!-- Progress Bar -->
-    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-
-    <!-- Navigation -->
-    <nav class="main-nav">
-        <ul>
-            <li><a href="#about" class="nav-link">About</a></li>
-            <li><a href="#skills" class="nav-link">Skills</a></li>
-            <li><a href="#vision" class="nav-link">Vision</a></li>
-            <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
-            <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
+    <nav class="nav">
+        <div class="nav-content">
+            <div class="logo">NA</div>
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#work">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </nav>
 
-    <!-- Header/Hero Section -->
-    <header class="hero" id="home">
-        <div class="parallax-background"></div>
+    <section class="hero">
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+        </div>
         <div class="hero-content">
-            <h1 class="main-heading">
-                <span class="animate-text" data-text="Shaping the Future,">Shaping the Future,</span>
-                <span class="animate-text" data-text="One Innovation at a Time">One Innovation at a Time</span>
-            </h1>
-            <p class="subtext" data-text="Driven by technology, inspired by innovation">Driven by technology, inspired by innovation</p>
-            <button class="cta-button" data-sound="click">
-                <span class="button-text">Discover My Vision</span>
-                <div class="button-particles"></div>
-            </button>
+            <h1>Nicolas Adem</h1>
+            <p>Creating warm, welcoming spaces in the digital world</p>
         </div>
-    </header>
-
-    <!-- About Me Section -->
-    <section id="about" class="about-section">
-        <div class="section-background"></div>
-        <div class="content-wrapper">
-            <div class="profile-container reveal-on-scroll">
-                <div class="profile-wrapper">
-                    <img src="/api/placeholder/300/300" alt="Nicolas Adem" class="profile-image">
-                    <div class="profile-overlay"></div>
-                </div>
-            </div>
-            <div class="about-text reveal-on-scroll">
-                <h2 class="section-title">About Me</h2>
-                <p class="animated-text">Tech Entrepreneur and World-Changer</p>
-                <div class="timeline">
-                    <div class="timeline-item reveal-on-scroll">
-                        <div class="timeline-icon">
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>2024</h3>
-                            <p>Latest Achievement</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal-on-scroll">
-                        <div class="timeline-icon">
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>2023</h3>
-                            <p>Major Milestone</p>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal-on-scroll">
-                        <div class="timeline-icon">
-                            <div class="icon-pulse"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3>2022</h3>
-                            <p>Career Beginning</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <div class="scroll-indicator"></div>
     </section>
 
-    <!-- Skills & Projects Section -->
-    <section id="skills" class="skills-section">
-        <div class="parallax-background tech-bg"></div>
-        <div class="content-wrapper">
-            <h2 class="section-title reveal-on-scroll">Skills & Projects</h2>
-            <div class="skills-container">
-                <div class="skill-pillar reveal-on-scroll">
-                    <div class="skill-icon">
-                        <div class="icon-glow"></div>
-                    </div>
-                    <h3>Innovation</h3>
-                    <p class="skill-description typing-animation">Driving technological advancement</p>
-                </div>
-                <div class="skill-pillar reveal-on-scroll">
-                    <div class="skill-icon">
-                        <div class="icon-glow"></div>
-                    </div>
-                    <h3>Leadership</h3>
-                    <p class="skill-description typing-animation">Guiding teams to success</p>
-                </div>
-                <div class="skill-pillar reveal-on-scroll">
-                    <div class="skill-icon">
-                        <div class="icon-glow"></div>
-                    </div>
-                    <h3>Strategy</h3>
-                    <p class="skill-description typing-animation">Crafting future-proof solutions</p>
-                </div>
-            </div>
-            
-            <div class="projects-carousel">
-                <div class="project-card reveal-on-scroll" data-sound="hover">
-                    <div class="card-inner">
-                        <div class="card-front">
-                            <img src="/api/placeholder/400/300" alt="Project 1">
-                            <h3>Project Name</h3>
-                        </div>
-                        <div class="card-back">
-                            <h3>Project Details</h3>
-                            <p>Project description and achievements</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Add more project cards as needed -->
-            </div>
-        </div>
-    </section>
+    <script>
+        gsap.to('.hero h1', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.5
+        });
 
-    <!-- Vision Section -->
-    <section id="vision" class="vision-section">
-        <div class="gradient-background"></div>
-        <div class="content-wrapper">
-            <h2 class="section-title reveal-on-scroll">Vision for the Future</h2>
-            <div class="vision-items">
-                <div class="vision-item reveal-on-scroll">
-                    <div class="floating-icon education">
-                        <div class="icon-orbit"></div>
-                    </div>
-                    <h3>Education</h3>
-                    <p>Transforming learning through technology</p>
-                </div>
-                <div class="vision-item reveal-on-scroll">
-                    <div class="floating-icon sustainability">
-                        <div class="icon-orbit"></div>
-                    </div>
-                    <h3>Sustainability</h3>
-                    <p>Creating eco-friendly solutions</p>
-                </div>
-                <div class="vision-item reveal-on-scroll">
-                    <div class="floating-icon innovation">
-                        <div class="icon-orbit"></div>
-                    </div>
-                    <h3>Innovation</h3>
-                    <p>Pushing boundaries of possibility</p>
-                </div>
-            </div>
-            <div class="quote-box reveal-on-scroll">
-                <blockquote class="typing-animation">Innovation distinguishes between a leader and a follower</blockquote>
-            </div>
-        </div>
-    </section>
+        gsap.to('.hero p', {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            delay: 0.8
+        });
 
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials-section">
-        <h2 class="section-title reveal-on-scroll">Impact & Testimonials</h2>
-        <div class="testimonial-slider">
-            <div class="testimonial-card active" data-sound="slide">
-                <div class="glowing-border"></div>
-                <p class="testimonial-text">Outstanding vision and execution</p>
-                <cite>- John Doe, CEO</cite>
-            </div>
-            <div class="testimonial-card" data-sound="slide">
-                <div class="glowing-border"></div>
-                <p class="testimonial-text">Revolutionary approach to problems</p>
-                <cite>- Jane Smith, CTO</cite>
-            </div>
-            <div class="slider-controls">
-                <button class="prev" data-sound="click">Previous</button>
-                <button class="next" data-sound="click">Next</button>
-            </div>
-        </div>
-    </section>
+        gsap.to('.scroll-indicator', {
+            opacity: 0.5,
+            duration: 1,
+            delay: 1.2
+        });
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="wave-background"></div>
-        <div class="content-wrapper">
-            <h2 class="section-title reveal-on-scroll">Connect with Me</h2>
-            <form class="contact-form reveal-on-scroll" novalidate>
-                <div class="form-field">
-                    <input type="text" id="name" required placeholder="Your Name">
-                    <div class="field-animation"></div>
-                </div>
-                <div class="form-field">
-                    <input type="email" id="email" required placeholder="Your Email">
-                    <div class="field-animation"></div>
-                </div>
-                <div class="form-field">
-                    <textarea id="message" required placeholder="Your Message"></textarea>
-                    <div class="field-animation"></div>
-                </div>
-                <button type="submit" class="submit-button" data-sound="click">
-                    <span>Send Message</span>
-                    <div class="button-animation"></div>
-                </button>
-            </form>
-            <div class="social-links reveal-on-scroll">
-                <a href="#" class="social-icon linkedin" data-sound="hover">
-                    <span class="icon-hover-effect">LinkedIn</span>
-                </a>
-                <a href="#" class="social-icon twitter" data-sound="hover">
-                    <span class="icon-hover-effect">Twitter</span>
-                </a>
-                <a href="#" class="social-icon github" data-sound="hover">
-                    <span class="icon-hover-effect">GitHub</span>
-                </a>
-            </div>
-        </div>
-    </section>
+        gsap.to('.shape-1', {
+            x: 50,
+            y: 30,
+            duration: 20,
+            repeat: -1,
+            yoyo: true,
+            ease: "none"
+        });
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#" class="footer-link" data-sound="hover">Privacy Policy</a>
-                <a href="#" class="footer-link" data-sound="hover">Terms of Service</a>
-            </div>
-            <p>&copy; 2024 Nicolas Adem. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button class="back-to-top" data-sound="click">
-        <span class="arrow">↑</span>
-        <div class="button-animation"></div>
-    </button>
-
-    <!-- Audio Elements -->
-    <audio id="click-sound" preload="auto">
-        <source src="click.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="hover-sound" preload="auto">
-        <source src="hover.mp3" type="audio/mpeg">
-    </audio>
-    <audio id="slide-sound" preload="auto">
-        <source src="slide.mp3" type="audio/mpeg">
-    </audio>
-
-    <!-- Custom Scripts -->
-    <script src="scripts.js"></script>
+        gsap.to('.shape-2', {
+            x: -30,
+            y: -50,
+            duration: 15,
+            repeat: -1,
+            yoyo: true,
+            ease: "none"
+        });
+    </script>
 </body>
 </html>
