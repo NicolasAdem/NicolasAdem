@@ -1,7 +1,3 @@
-// Add this at the top of app.js
-console.log("App.js loaded");
-console.log("Number of quotes:", quotes.length);
-
 // quotes.js - PUT THIS IN A SEPARATE FILE
 const quotes = [
     {
@@ -294,6 +290,10 @@ const quotes = [
     }
 ]
 ;
+
+// Add this at the top of app.js
+console.log("App.js loaded");
+console.log("Number of quotes:", quotes.length);
 
 // app.js - PUT THIS IN A SEPARATE FILE
 document.addEventListener('DOMContentLoaded', () => {
