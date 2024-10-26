@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nicolas Adem | Innovator & Entrepreneur</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto Mono', monospace;
+        }
+
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            position: relative;
+        }
+
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+        }
+
+        .typewriter {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            height: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .typewriter::after {
+            content: '|';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .quote-container {
+            position: relative;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            transform: translateY(50px);
+            opacity: 0;
+        }
+
+        .quote {
+            font-style: italic;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .quote-author {
+            text-align: right;
+            color: #00ff88;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .project-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .aspirations {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .university-card {
+            width: 300px;
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .university-card:hover {
+            transform: scale(1.05);
+        }
+
+        .university-logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1rem;
+            background: #fff;
+            mask-size: contain;
+            mask-repeat: no-repeat;
+            mask-position: center;
+        }
+
+        .stanford-logo {
+            background: linear-gradient(45deg, #8B1F41, #C41E3A);
+        }
+
+        .harvard-logo {
+            background: linear-gradient(45deg, #A51C30, #C41E3A);
+        }
+
+        .floating-nav {
+            position: fixed;
+            top: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem 1rem;
+        }
+
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ff88;
+            transition: width 0.3s ease;
+        }
+
+        .nav-item:hover::after {
+            width: 100%;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .skill-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .floating-nav {
+                display: none;
+            }
+            .typewriter {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="floating-nav">
+        <a href="#home" class="nav-item">Home</a>
+        <a href="#quotes" class="nav-item">Quotes</a>
+        <a href="#projects" class="nav-item">Projects</a>
+        <a href="#aspirations" class="nav-item">Dreams</a>
+    </nav>
+
+    <section id="home" class="section hero">
+        <div class="typewriter"></div>
+        <div class="skills-container">
+            <div class="skill-badge">AI Enthusiast</div>
+            <div class="skill-badge">Robotics</div>
+            <div class="skill-badge">Entrepreneurship</div>
+            <div class="skill-badge">Web Development</div>
+            <div class="skill-badge">Innovation</div>
+        </div>
+    </section>
+
+    <section id="quotes" class="section">
+        <div class="quote-container">
+            <p class="quote">"The best way to predict the future is to create it."</p>
+            <p class="quote-author">- Peter Drucker</p>
+        </div>
+        <div class="quote-container">
+            <p class="quote">"Innovation distinguishes between a leader and a follower."</p>
+            <p class="quote-author">- Steve Jobs</p>
+        </div>
+        <div class="quote-container">
+            <p class="quote">"The future belongs to those who believe in the beauty of their dreams."</p>
+            <p class="quote-author">- Eleanor Roosevelt</p>
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="projects-grid">
+            <div class="project-card">
+                <h3>AI Trading Algorithm</h3>
+                <p>Developed a machine learning model for predicting market trends using neural networks.</p>
+                <div class="tech-stack">
+                    <span class="skill-badge">Python</span>
+                    <span class="skill-badge">TensorFlow</span>
+                    <span class="skill-badge">Finance</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Robotics Innovation Lab</h3>
+                <p>Leading a team developing autonomous robots for educational purposes.</p>
+                <div class="tech-stack">
+                    <span class="skill-badge">Arduino</span>
+                    <span class="skill-badge">ROS</span>
+                    <span class="skill-badge">C++</span>
+                </div>
+            </div>
+            <div class="project-card">
+                <h3>Tech Startup Incubator</h3>
+                <p>Founded a platform connecting young entrepreneurs with mentors and resources.</p>
+                <div class="tech-stack">
+                    <span class="skill-badge">Leadership</span>
+                    <span class="skill-badge">Networking</span>
+                    <span class="skill-badge">Innovation</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="aspirations" class="section">
+        <div class="aspirations">
+            <div class="university-card">
+                <div class="university-logo stanford-logo"></div>
+                <h3>Stanford University</h3>
+                <p>Dream: BS in Computer Science</p>
+                <p>Research Focus: AI & Robotics</p>
+            </div>
+            <div class="university-card">
+                <div class="university-logo harvard-logo"></div>
+                <h3>Harvard University</h3>
+                <p>Dream: MBA</p>
+                <p>Focus: Technology Entrepreneurship</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Typewriter effect
+        const texts = [
+            "Hello, I'm Nicolas Adem",
+            "AI & Robotics Enthusiast",
+            "Future Stanford/Harvard Student",
+            "Innovation-Driven Entrepreneur"
+        ];
+        
+        let textIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriter = document.querySelector('.typewriter');
+
+        function type() {
+            const currentText = texts[textIndex];
+            if (isDeleting) {
+                typewriter.textContent = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typewriter.textContent = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentText.length) {
+                isDeleting = true;
+                setTimeout(type, 1500);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                textIndex = (textIndex + 1) % texts.length;
+                setTimeout(type, 500);
+            } else {
+                setTimeout(type, isDeleting ? 50 : 100);
+            }
+        }
+
+        type();
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate quote containers
+        gsap.utils.toArray('.quote-container').forEach((quote, i) => {
+            gsap.to(quote, {
+                opacity: 1,
+                y: 0,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: quote,
+                    start: 'top bottom-=100',
+                    toggleActions: 'play none none reverse'
+                },
+                delay: i * 0.2
+            });
+        });
+
+        // Animate project cards
+        gsap.utils.toArray('.project-card').forEach((card, i) => {
+            gsap.from(card, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top bottom-=100',
+                    toggleActions: 'play none none reverse'
+                },
+                delay: i * 0.2
+            });
+        });
+
+        // Animate university cards
+        gsap.utils.toArray('.university-card').forEach((card, i) => {
+            gsap.from(card, {
+                opacity: 0,
+                x: i % 2 === 0 ? -100 : 100,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: card,
+                    start: 'top bottom-=100',
+                    toggleActions: 'play none none reverse'
+                }
+            });
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
