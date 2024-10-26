@@ -1,196 +1,35 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicolas Adem - Building Tomorrow's Technology</title>
-    <link rel="stylesheet" href="b.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Quoteopedia - The World of Quotes</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="scroll-progress"></div>
-    
-    <section id="hero" class="section">
-        <div class="container">
-            <div class="hero-content">
-                <div class="profile-image">
-                    <!-- Replace with your image -->
-                    <img src="profile.jpg" alt="Nicolas Adem">
-                </div>
-                <h1>Building Tomorrow's Technology for a Sustainable World</h1>
-                <p class="subheadline">Ambitious young tech entrepreneur, dreamer, and change-maker</p>
-                <div class="cta-buttons">
-                    <button onclick="scrollToSection('about')" class="btn">Explore My Journey</button>
-                    <button onclick="scrollToSection('connect')" class="btn">Let's Connect</button>
-                </div>
-            </div>
-        </div>
-    </section>
+    <header>
+        <h1>Quoteopedia</h1>
+        <p class="subtitle">The World of Quotes</p>
+    </header>
 
-    <section id="about" class="section">
-        <div class="container">
-            <h2>My Story</h2>
-            <div class="about-grid">
-                <div class="personal-story">
-                    <div class="content-box">
-                        <h3>The Journey</h3>
-                        <p>From a curious young student to an ambitious entrepreneur, my path has been driven by a passion for technology, AI, and making a difference in the world.</p>
-                    </div>
-                </div>
-                <div class="milestones">
-                    <div class="timeline">
-                        <div class="milestone">
-                            <div class="milestone-content">
-                                <h4>Founded Web-G</h4>
-                                <p>Created innovative web solutions</p>
-                            </div>
-                        </div>
-                        <div class="milestone">
-                            <div class="milestone-content">
-                                <h4>Poetry Competition</h4>
-                                <p>Award-winning creative expressions</p>
-                            </div>
-                        </div>
-                        <div class="milestone">
-                            <div class="milestone-content">
-                                <h4>Global Exchange</h4>
-                                <p>Experiences in Portugal and South Africa</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="vision" class="section">
-        <div class="container">
-            <h2>Changing the World</h2>
-            <div class="vision-grid">
-                <div class="vision-card">
-                    <h3>Technology & Innovation</h3>
-                    <p>Embracing AI, robotics, and environmental technologies</p>
-                </div>
-                <div class="vision-card">
-                    <h3>Entrepreneurship</h3>
-                    <p>Leading sustainable businesses that make a difference</p>
-                </div>
-                <div class="vision-card">
-                    <h3>Sustainability</h3>
-                    <p>Developing eco-friendly solutions</p>
-                </div>
-                <div class="vision-card">
-                    <h3>Global Impact</h3>
-                    <p>Creating opportunities worldwide</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="section">
-        <div class="container">
-            <h2>Passion in Action</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>Web-G</h3>
-                    <p>Innovative web solutions for tomorrow's challenges</p>
-                </div>
-                <!-- Add more project cards as needed -->
-            </div>
-        </div>
-    </section>
-
-    <section id="connect" class="section">
-        <div class="container">
-            <h2>Let's Build Together</h2>
-            <form class="contact-form">
-                <div class="form-group">
-                    <input type="text" placeholder="Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Message" required></textarea>
-                </div>
-                <button type="submit" class="btn">Send Message</button>
-            </form>
-        </div>
-    </section>
-
-    <section id="skills" class="section">
-    <div class="container">
-        <div class="skills-wrapper">
-            <div class="skills-radar">
-                <canvas id="skillsChart"></canvas>
-            </div>
-            <div class="skills-text">
-                <h2>Technical Prowess</h2>
-                <div class="skill-bars">
-                    <div class="skill">
-                        <span class="skill-name">AI & Machine Learning</span>
-                        <div class="progress-bar">
-                            <div class="progress" data-value="90"></div>
-                        </div>
-                    </div>
-                    <!-- Add more skills -->
-                </div>
-            </div>
+    <div class="mood-selector">
+        <h2>How are you feeling today?</h2>
+        <div class="mood-buttons">
+            <button onclick="filterByMood('happy')">😊 Happy</button>
+            <button onclick="filterByMood('sad')">😢 Sad</button>
+            <button onclick="filterByMood('inspired')">✨ Inspired</button>
+            <button onclick="filterByMood('thoughtful')">🤔 Thoughtful</button>
         </div>
     </div>
-    <div class="floating-shapes">
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-        <div class="shape shape-3"></div>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search quotes...">
+        <div id="tagCloud" class="tag-cloud"></div>
     </div>
-</section>
 
-<section id="story" class="section">
-    <div class="container">
-        <div class="story-grid">
-            <div class="story-image">
-                <img src="story-image.jpg" alt="My Journey">
-                <div class="image-overlay"></div>
-            </div>
-            <div class="story-content">
-                <h2>My Journey</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-content">
-                            <h3>2024</h3>
-                            <p>Leading innovation in sustainable tech</p>
-                        </div>
-                    </div>
-                    <!-- Add more timeline items -->
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+    <div id="quoteContainer" class="quote-container"></div>
 
-<section id="impact" class="section">
-    <div class="container">
-        <div class="impact-stats">
-            <div class="stat-card">
-                <div class="stat-number" data-value="100">0</div>
-                <div class="stat-label">Projects Completed</div>
-            </div>
-            <!-- Add more stat cards -->
-        </div>
-    </div>
-    <div class="wave-background"></div>
-</section>
-
-    <footer>
-        <div class="container">
-            <p>"The future belongs to those who believe in the beauty of their dreams."</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
