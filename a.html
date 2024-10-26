@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nicolas Adem | Personal Space</title>
+    <title>Nicolas Adem | Creative Innovator</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -18,6 +19,7 @@
             --warm-accent: #FF6B4A;
             --text-primary: #2C2C2C;
             --text-secondary: #666;
+            --card-bg: #FFFFFF;
         }
 
         body {
@@ -70,14 +72,23 @@
             width: 100%;
         }
 
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
         .hero {
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 2rem;
             position: relative;
             overflow: hidden;
+            padding: 2rem;
         }
 
         .hero-content {
@@ -102,58 +113,127 @@
             transform: translateY(30px);
         }
 
-        .floating-shapes {
-            position: absolute;
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem 0;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 1rem;
+            overflow: hidden;
+            background: var(--card-bg);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 300px;
+            background: #ddd;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-img img {
             width: 100%;
             height: 100%;
-            top: 0;
-            left: 0;
+            object-fit: cover;
         }
 
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            opacity: 0.1;
-            filter: blur(40px);
+        .gallery-content {
+            padding: 1.5rem;
         }
 
-        .shape-1 {
-            background: var(--warm-accent);
-            width: 300px;
-            height: 300px;
-            top: 20%;
-            left: 15%;
+        .gallery-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
         }
 
-        .shape-2 {
-            background: #FFB347;
-            width: 400px;
-            height: 400px;
-            bottom: 10%;
-            right: 15%;
+        .innovations {
+            position: relative;
+            overflow: hidden;
         }
 
-        .scroll-indicator {
-            position: absolute;
-            bottom: 2rem;
-            left: 50%;
-            transform: translateX(-50%);
-            opacity: 0;
+        .innovation-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
         }
 
-        .scroll-indicator::before {
-            content: '';
-            display: block;
-            width: 2px;
-            height: 60px;
-            background: var(--text-primary);
-            margin: 0 auto;
-            animation: scroll 2s infinite;
+        .innovation-card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
 
-        @keyframes scroll {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(20px); opacity: 0; }
+        .innovation-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .extras {
+            background: linear-gradient(45deg, #FF6B4A11, #FFB34711);
+            position: relative;
+        }
+
+        .extras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .extra-item {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .contact {
+            text-align: center;
+            padding-bottom: 8rem;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-method {
+            padding: 1rem 2rem;
+            background: var(--card-bg);
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateY(-5px);
         }
 
         @media (max-width: 768px) {
@@ -168,6 +248,18 @@
             .nav-links {
                 display: none;
             }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-methods {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -176,26 +268,124 @@
         <div class="nav-content">
             <div class="logo">NA</div>
             <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#work">Work</a>
+                <a href="#gallery">Gallery</a>
+                <a href="#innovations">Innovations</a>
+                <a href="#extras">Extras</a>
                 <a href="#contact">Contact</a>
             </div>
         </div>
     </nav>
 
     <section class="hero">
-        <div class="floating-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-        </div>
         <div class="hero-content">
             <h1>Nicolas Adem</h1>
-            <p>Creating warm, welcoming spaces in the digital world</p>
+            <p>Innovator • Creator • Visionary</p>
         </div>
-        <div class="scroll-indicator"></div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Creative Portfolio</h2>
+            <p class="section-subtitle">A collection of my works, projects, and creative endeavors</p>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <div class="gallery-img">
+                        <img src="/api/placeholder/400/300" alt="Project 1">
+                    </div>
+                    <div class="gallery-content">
+                        <h3>Project Title</h3>
+                        <p>Description of the innovative project and its impact on the field.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img">
+                        <img src="/api/placeholder/400/300" alt="Project 2">
+                    </div>
+                    <div class="gallery-content">
+                        <h3>Creative Work</h3>
+                        <p>Exploring new boundaries through creative expression and technology.</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-img">
+                        <img src="/api/placeholder/400/300" alt="Project 3">
+                    </div>
+                    <div class="gallery-content">
+                        <h3>Innovation</h3>
+                        <p>Breaking new ground with innovative solutions and approaches.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="innovations" class="innovations">
+        <div class="container">
+            <h2 class="section-title">Innovative Projects</h2>
+            <p class="section-subtitle">Pushing boundaries and creating new possibilities</p>
+            <div class="innovation-cards">
+                <div class="innovation-card">
+                    <h3>Project Alpha</h3>
+                    <p>Revolutionizing the way we think about digital interaction through innovative approaches.</p>
+                </div>
+                <div class="innovation-card">
+                    <h3>Project Beta</h3>
+                    <p>Creating seamless experiences that bridge the gap between technology and human needs.</p>
+                </div>
+                <div class="innovation-card">
+                    <h3>Project Gamma</h3>
+                    <p>Exploring new frontiers in interactive design and user experience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="extras" class="extras">
+        <div class="container">
+            <h2 class="section-title">Extra Dimensions</h2>
+            <p class="section-subtitle">Beyond the ordinary - where creativity meets innovation</p>
+            <div class="extras-grid">
+                <div class="extra-item">
+                    <h3>Research</h3>
+                    <p>Diving deep into emerging technologies and their applications.</p>
+                </div>
+                <div class="extra-item">
+                    <h3>Experiments</h3>
+                    <p>Testing new ideas and pushing the boundaries of what's possible.</p>
+                </div>
+                <div class="extra-item">
+                    <h3>Collaborations</h3>
+                    <p>Working with other innovators to create something extraordinary.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Let's Connect</h2>
+            <p class="section-subtitle">Ready to collaborate on the next big thing?</p>
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <h3>Email</h3>
+                    <p>your@email.com</p>
+                </div>
+                <div class="contact-method">
+                    <h3>Social</h3>
+                    <p>@yourusername</p>
+                </div>
+                <div class="contact-method">
+                    <h3>Location</h3>
+                    <p>Your City, Country</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero animations
         gsap.to('.hero h1', {
             opacity: 1,
             y: 0,
@@ -210,28 +400,46 @@
             delay: 0.8
         });
 
-        gsap.to('.scroll-indicator', {
-            opacity: 0.5,
-            duration: 1,
-            delay: 1.2
+        // Scroll animations for gallery items
+        gsap.utils.toArray('.gallery-item').forEach(item => {
+            gsap.from(item, {
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top bottom-=100",
+                    toggleActions: "play none none reverse"
+                }
+            });
         });
 
-        gsap.to('.shape-1', {
-            x: 50,
-            y: 30,
-            duration: 20,
-            repeat: -1,
-            yoyo: true,
-            ease: "none"
+        // Scroll animations for innovation cards
+        gsap.utils.toArray('.innovation-card').forEach(card => {
+            gsap.from(card, {
+                opacity: 0,
+                y: 30,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top bottom-=50",
+                    toggleActions: "play none none reverse"
+                }
+            });
         });
 
-        gsap.to('.shape-2', {
-            x: -30,
-            y: -50,
-            duration: 15,
-            repeat: -1,
-            yoyo: true,
-            ease: "none"
+        // Scroll animations for extra items
+        gsap.utils.toArray('.extra-item').forEach(item => {
+            gsap.from(item, {
+                opacity: 0,
+                scale: 0.9,
+                duration: 0.8,
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top bottom-=50",
+                    toggleActions: "play none none reverse"
+                }
+            });
         });
     </script>
 </body>
