@@ -3,23 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="b.css">
     <title>Nicolas Adem - Shaping the Future</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- ScrollReveal -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="b.css">
 </head>
 <body>
     <!-- Progress Bar -->
-    <div class="progress-bar"></div>
+    <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#vision" class="nav-link">Vision</a></li>
+            <li><a href="#testimonials" class="nav-link">Testimonials</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
 
     <!-- Header/Hero Section -->
-    <header class="hero">
+    <header class="hero" id="home">
         <div class="parallax-background"></div>
         <div class="hero-content">
             <h1 class="main-heading">
-                <span class="animate-text">Shaping the Future,</span>
-                <span class="animate-text">One Innovation at a Time</span>
+                <span class="animate-text" data-text="Shaping the Future,">Shaping the Future,</span>
+                <span class="animate-text" data-text="One Innovation at a Time">One Innovation at a Time</span>
             </h1>
-            <p class="subtext">Driven by technology, inspired by innovation</p>
-            <button class="cta-button">Discover My Vision</button>
+            <p class="subtext" data-text="Driven by technology, inspired by innovation">Driven by technology, inspired by innovation</p>
+            <button class="cta-button" data-sound="click">
+                <span class="button-text">Discover My Vision</span>
+                <div class="button-particles"></div>
+            </button>
         </div>
     </header>
 
@@ -27,22 +49,43 @@
     <section id="about" class="about-section">
         <div class="section-background"></div>
         <div class="content-wrapper">
-            <div class="profile-container">
-                <img src="path-to-image.jpg" alt="Nicolas Adem" class="profile-image">
+            <div class="profile-container reveal-on-scroll">
+                <div class="profile-wrapper">
+                    <img src="/api/placeholder/300/300" alt="Nicolas Adem" class="profile-image">
+                    <div class="profile-overlay"></div>
+                </div>
             </div>
-            <div class="about-text">
-                <h2>About Me</h2>
+            <div class="about-text reveal-on-scroll">
+                <h2 class="section-title">About Me</h2>
                 <p class="animated-text">Tech Entrepreneur and World-Changer</p>
-                <!-- Timeline -->
                 <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-icon"></div>
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-icon">
+                            <div class="icon-pulse"></div>
+                        </div>
                         <div class="timeline-content">
-                            <h3>Achievement 1</h3>
-                            <p>Description of achievement</p>
+                            <h3>2024</h3>
+                            <p>Latest Achievement</p>
                         </div>
                     </div>
-                    <!-- Add more timeline items as needed -->
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-icon">
+                            <div class="icon-pulse"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>2023</h3>
+                            <p>Major Milestone</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item reveal-on-scroll">
+                        <div class="timeline-icon">
+                            <div class="icon-pulse"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <h3>2022</h3>
+                            <p>Career Beginning</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -52,27 +95,45 @@
     <section id="skills" class="skills-section">
         <div class="parallax-background tech-bg"></div>
         <div class="content-wrapper">
-            <h2>Skills & Projects</h2>
+            <h2 class="section-title reveal-on-scroll">Skills & Projects</h2>
             <div class="skills-container">
-                <div class="skill-pillar">
-                    <div class="skill-icon"></div>
-                    <h3>Skill Area 1</h3>
-                    <p class="skill-description">Description of skills</p>
+                <div class="skill-pillar reveal-on-scroll">
+                    <div class="skill-icon">
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p class="skill-description typing-animation">Driving technological advancement</p>
                 </div>
-                <!-- Add more skill pillars -->
+                <div class="skill-pillar reveal-on-scroll">
+                    <div class="skill-icon">
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>Leadership</h3>
+                    <p class="skill-description typing-animation">Guiding teams to success</p>
+                </div>
+                <div class="skill-pillar reveal-on-scroll">
+                    <div class="skill-icon">
+                        <div class="icon-glow"></div>
+                    </div>
+                    <h3>Strategy</h3>
+                    <p class="skill-description typing-animation">Crafting future-proof solutions</p>
+                </div>
             </div>
             
             <div class="projects-carousel">
-                <div class="project-card">
-                    <div class="card-front">
-                        <img src="project1.jpg" alt="Project 1">
-                    </div>
-                    <div class="card-back">
-                        <h3>Project Title</h3>
-                        <p>Project description</p>
+                <div class="project-card reveal-on-scroll" data-sound="hover">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <img src="/api/placeholder/400/300" alt="Project 1">
+                            <h3>Project Name</h3>
+                        </div>
+                        <div class="card-back">
+                            <h3>Project Details</h3>
+                            <p>Project description and achievements</p>
+                        </div>
                     </div>
                 </div>
-                <!-- Add more project cards -->
+                <!-- Add more project cards as needed -->
             </div>
         </div>
     </section>
@@ -81,30 +142,54 @@
     <section id="vision" class="vision-section">
         <div class="gradient-background"></div>
         <div class="content-wrapper">
-            <h2>Vision for the Future</h2>
+            <h2 class="section-title reveal-on-scroll">Vision for the Future</h2>
             <div class="vision-items">
-                <div class="vision-item">
-                    <div class="floating-icon education"></div>
+                <div class="vision-item reveal-on-scroll">
+                    <div class="floating-icon education">
+                        <div class="icon-orbit"></div>
+                    </div>
                     <h3>Education</h3>
-                    <p>Vision for education</p>
+                    <p>Transforming learning through technology</p>
                 </div>
-                <!-- Add more vision items -->
+                <div class="vision-item reveal-on-scroll">
+                    <div class="floating-icon sustainability">
+                        <div class="icon-orbit"></div>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>Creating eco-friendly solutions</p>
+                </div>
+                <div class="vision-item reveal-on-scroll">
+                    <div class="floating-icon innovation">
+                        <div class="icon-orbit"></div>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>Pushing boundaries of possibility</p>
+                </div>
             </div>
-            <div class="quote-box">
-                <blockquote>Inspiring quote goes here</blockquote>
+            <div class="quote-box reveal-on-scroll">
+                <blockquote class="typing-animation">Innovation distinguishes between a leader and a follower</blockquote>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
     <section id="testimonials" class="testimonials-section">
-        <h2>Impact & Testimonials</h2>
+        <h2 class="section-title reveal-on-scroll">Impact & Testimonials</h2>
         <div class="testimonial-slider">
-            <div class="testimonial-card">
-                <p class="testimonial-text">Testimonial content</p>
-                <cite>- Name, Position</cite>
+            <div class="testimonial-card active" data-sound="slide">
+                <div class="glowing-border"></div>
+                <p class="testimonial-text">Outstanding vision and execution</p>
+                <cite>- John Doe, CEO</cite>
             </div>
-            <!-- Add more testimonial cards -->
+            <div class="testimonial-card" data-sound="slide">
+                <div class="glowing-border"></div>
+                <p class="testimonial-text">Revolutionary approach to problems</p>
+                <cite>- Jane Smith, CTO</cite>
+            </div>
+            <div class="slider-controls">
+                <button class="prev" data-sound="click">Previous</button>
+                <button class="next" data-sound="click">Next</button>
+            </div>
         </div>
     </section>
 
@@ -112,23 +197,35 @@
     <section id="contact" class="contact-section">
         <div class="wave-background"></div>
         <div class="content-wrapper">
-            <h2>Connect with Me</h2>
-            <form class="contact-form">
+            <h2 class="section-title reveal-on-scroll">Connect with Me</h2>
+            <form class="contact-form reveal-on-scroll" novalidate>
                 <div class="form-field">
-                    <input type="text" id="name" placeholder="Your Name">
+                    <input type="text" id="name" required placeholder="Your Name">
+                    <div class="field-animation"></div>
                 </div>
                 <div class="form-field">
-                    <input type="email" id="email" placeholder="Your Email">
+                    <input type="email" id="email" required placeholder="Your Email">
+                    <div class="field-animation"></div>
                 </div>
                 <div class="form-field">
-                    <textarea id="message" placeholder="Your Message"></textarea>
+                    <textarea id="message" required placeholder="Your Message"></textarea>
+                    <div class="field-animation"></div>
                 </div>
-                <button type="submit" class="submit-button">Send Message</button>
+                <button type="submit" class="submit-button" data-sound="click">
+                    <span>Send Message</span>
+                    <div class="button-animation"></div>
+                </button>
             </form>
-            <div class="social-links">
-                <a href="#" class="social-icon linkedin">LinkedIn</a>
-                <a href="#" class="social-icon twitter">Twitter</a>
-                <a href="#" class="social-icon github">GitHub</a>
+            <div class="social-links reveal-on-scroll">
+                <a href="#" class="social-icon linkedin" data-sound="hover">
+                    <span class="icon-hover-effect">LinkedIn</span>
+                </a>
+                <a href="#" class="social-icon twitter" data-sound="hover">
+                    <span class="icon-hover-effect">Twitter</span>
+                </a>
+                <a href="#" class="social-icon github" data-sound="hover">
+                    <span class="icon-hover-effect">GitHub</span>
+                </a>
             </div>
         </div>
     </section>
@@ -137,16 +234,31 @@
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="#" class="footer-link">Privacy Policy</a>
-                <a href="#" class="footer-link">Terms of Service</a>
+                <a href="#" class="footer-link" data-sound="hover">Privacy Policy</a>
+                <a href="#" class="footer-link" data-sound="hover">Terms of Service</a>
             </div>
             <p>&copy; 2024 Nicolas Adem. All rights reserved.</p>
         </div>
     </footer>
 
     <!-- Back to Top Button -->
-    <button class="back-to-top">
+    <button class="back-to-top" data-sound="click">
         <span class="arrow">↑</span>
+        <div class="button-animation"></div>
     </button>
+
+    <!-- Audio Elements -->
+    <audio id="click-sound" preload="auto">
+        <source src="click.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="hover-sound" preload="auto">
+        <source src="hover.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="slide-sound" preload="auto">
+        <source src="slide.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Custom Scripts -->
+    <script src="scripts.js"></script>
 </body>
 </html>
